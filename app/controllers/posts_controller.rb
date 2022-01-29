@@ -9,6 +9,9 @@ class PostsController < ApplicationController
 
     # 画像をVisionAPIに送り、Hashに変換したレスポンスを取得
     @vision_api_responses = request_to_api(@encoded_image)
+
+    @image = "data:image/jpeg;base64,#{@encoded_image}"
+    @post = Post.new
   end
 
   def create

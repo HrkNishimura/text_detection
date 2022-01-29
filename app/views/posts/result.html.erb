@@ -1,8 +1,12 @@
 <div>
+  <%= image_tag @image %>
+</div>
+
+<div>
   <%= @vision_api_responses %>
 </div>
 
 <%= form_with model: @post do |f| %>
   <%= f.file_field :image %>
-  <%= f.submit '送信'%>
+  <%= f.submit '画像を保存する'%>
 <% end %>
