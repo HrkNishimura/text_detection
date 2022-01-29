@@ -1,4 +1,4 @@
-<%= form_with model: @post do |f| %>
+<%= form_with url: result_path do |f| %>
   <%= f.file_field :image %>
-  <%= f.submit '送信'%>
+  <%= f.submit 'Vision APIに送信する'%>
 <% end %>

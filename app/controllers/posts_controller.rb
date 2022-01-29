@@ -1,5 +1,16 @@
 class PostsController < ApplicationController
-  def index
+  include PostsHelper
+
+  def index; end
+  
+  def result
+    # ユーザーがアップした画像をエンコード
+    @encoded_image = Base64.strict_encode64(params[:image].read)
+
+    # 画像をVisionAPIに送り、Hashに変換したレスポンスを取得
+    @vision_api_responses = request_to_api(@encoded_image)
+
+    @image = "data:image/jpeg;base64,#{@encoded_image}"
     @post = Post.new
   end
 
