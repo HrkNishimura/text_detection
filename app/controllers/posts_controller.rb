@@ -4,6 +4,10 @@ class PostsController < ApplicationController
   def index; end
   
   def result
+    if params[:image].nil?
+      redirect_to root_path, danger: '画像をアップロードしてください'
+      return
+    end
     # ユーザーがアップした画像をエンコード
     @encoded_image = Base64.strict_encode64(params[:image].read)
 
@@ -16,15 +20,15 @@ class PostsController < ApplicationController
 
   def create
     if params[:post] == nil
-      redirect_to root_path, alert: '画像をアップロードしてください'
+      redirect_to root_path, danger: '画像をアップロードしてください'
       return
     end
 
     @post = Post.new(post_params)
     if @post.save
-      redirect_to root_path, notice: '画像を保存しました'
+      redirect_to root_path, success: '画像を保存しました'
     else
-      flash.now[:alert] = '画像を保存できませんでした'
+      flash.now[:danger] = '画像を保存できませんでした'
       render :index
     end
   end
