@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   
   def result
     if params[:image].nil?
-      redirect_to root_path, danger: '画像をアップロードしてください'
+      redirect_to root_path, danger: '画像を選択してください'
       return
     end
     # ユーザーがアップした画像をエンコード
