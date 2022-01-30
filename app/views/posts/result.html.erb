@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="mt-5 text-center">
+    <%= link_to root_path do %>
+      <button type="button" class="btn btn-dark">トップページに戻る</button>
+    <% end %>
+  </div>
+  <div class="d-flex mt-5">
+    <div class="w-50 border">
+      <p class="text-center border">アップロード画像</p>
+      <%= image_tag @image, class: "w-100 p-2" %>
+    </div>
+    <div class="w-50 border">
+      <p class="text-center border">レスポンス</p>
+      <span class="w-100 p-2">
+        <%= @vision_api_responses %>
+      </span>
+    </div>
+  </div>
+  <h2 class="mt-5 text-center">画像を保存する</h2>
+  <div class="w-50 mx-auto align-middle mt-2 text-center">
+    <%= form_with model: @post do |f| %>
+      <div class="form-group">
+        <%= f.file_field :image, class: "form-control mb-3" %>
+        <%= f.submit '保存', class: "btn btn-primary"%>
+      </div>
+    <% end %>
+  </div>
+</div>
+

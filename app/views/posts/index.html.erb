@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <h2 class="text-center">文字認識する画像を選択</h2>
+  <div class="w-50 mx-auto align-middle mt-5 text-center">
+    <%= form_with url: result_path do |f| %>
+      <div class="form-group">
+        <%= f.file_field :image, onchange: 'previewImage()', class: "form-control mb-3" %>
+        <%= f.submit 'Vision APIに送信', class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    <div class="mx-auto">
+      <%= image_tag '', id: 'preview', class: 'w-100' %>
+    </div>
+  </div>
+</div>
+
+<script>
+  function previewImage() {
+  const target = this.event.target;
+  const file = target.files[0];
+  const reader  = new FileReader();
+  reader.onloadend = function () {
+      const preview = document.querySelector("#preview")
+      if(preview) {
+        preview.src = reader.result;
+      }
+    }
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+  }
+</script>
