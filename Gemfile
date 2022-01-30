@@ -5,6 +5,7 @@ ruby '3.0.2'
 
 # Image
 gem 'carrierwave'
+gem 'fog-aws'
 
 # Configuration
 gem 'dotenv-rails'
