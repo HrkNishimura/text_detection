@@ -1,12 +1,15 @@
-<div>
-  <%= image_tag @image %>
+<div class="container">
+  <div class="d-flex">
+    <div class="w-50">
+      <%= image_tag @image %>
+    </div>
+    <div class="w-50">
+      <%= @vision_api_responses %>
+    </div>
+  </div>
+  <%= form_with model: @post do |f| %>
+    <%= f.file_field :image %>
+    <%= f.submit '画像を保存する'%>
+  <% end %>
 </div>
 
-<div>
-  <%= @vision_api_responses %>
-</div>
-
-<%= form_with model: @post do |f| %>
-  <%= f.file_field :image %>
-  <%= f.submit '画像を保存する'%>
-<% end %>

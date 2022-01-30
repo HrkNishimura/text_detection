@@ -1,4 +1,10 @@
-<%= form_with url: result_path do |f| %>
-  <%= f.file_field :image %>
-  <%= f.submit 'Vision APIに送信する'%>
-<% end %>
+<div class="container mt-5">
+  <div class="h-50 w-50 mx-auto align-middle">
+    <%= form_with url: result_path do |f| %>
+      <div class="form-group">
+        <%= f.file_field :image, class: "form-control mb-3" %>
+        <%= f.submit 'Vision APIに送信する', class: "btn btn-primary"%>
+      </div>
+    <% end %>
+  </div>
+</div>
