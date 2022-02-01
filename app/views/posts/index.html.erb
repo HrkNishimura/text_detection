@@ -4,18 +4,17 @@
     <%= form_with model: @post do |f| %>
       <div class="form-group">
         <%= f.file_field :image, id: 'uploader', class: "form-control mb-3" %>
-        <%= f.submit '画像を保存', class: "btn btn-primary" %>
+        <%= f.submit '画像を保存', class: "btn btn-primary mt-5" %>
       </div>
     <% end %>
   </div>
-  <hr>
-  <div class="d-flex mt-5">
-    <div class="w-50 border text-center">
-      <p class="text-center border fw-bold fs-2">アップロード画像</p>
+  <div class="d-flex mt-2">
+    <div class="w-50 border border-primary border-3 text-center">
+      <p class="text-center border-bottom border-primary border-3 fw-bold fs-2">アップロード画像</p>
       <div id="showImage" class="w-100 p-2"></div>
     </div>
-    <div class="w-50 border">
-      <p class="text-center border fw-bold fs-2">レスポンス</p>
+    <div class="w-50 border-top border-bottom border-end border-primary border-3">
+      <p class="text-center border-bottom border-primary border-3 fw-bold fs-2">レスポンス</p>
       <div id="showResponse" class="w-100 p-2"></div>
     </div>
   </div>
@@ -74,7 +73,7 @@
     if(result.responses[0].textAnnotations){
       $("#showResponse").append("<span id='responseText'>" + result.responses[0].textAnnotations[0].description + "</span>")
     }else{
-      $("#showResponse").append("<p id='responseText'>文字が見つかりませんでした</p>")
+      $("#showResponse").append("<p id='responseText' class='text-danger fs-4'>文字が検出されませんでした</p>")
     }
   }
 </script>
