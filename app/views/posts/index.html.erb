@@ -1,23 +1,21 @@
 <div class="container mt-5 text-center">
   <h2>文字認識する画像を選択</h2>
-  <div>
-    <div class="w-50 mx-auto mt-3">
-      <%= form_with model: @post do |f| %>
-        <div class="form-group">
-          <%= f.file_field :image, onchange: 'getImageInfo()', class: "form-control mb-3" %>
-          <%= f.submit '画像を保存', class: "btn btn-primary" %>
-        </div>
-      <% end %>
+  <div class="w-50 mx-auto mt-3">
+    <%= form_with model: @post do |f| %>
+      <div class="form-group">
+        <%= f.file_field :image, id: 'uploader', class: "form-control mb-3" %>
+        <%= f.submit '画像を保存', class: "btn btn-primary mt-5" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="d-flex mt-2">
+    <div class="w-50 border border-primary border-3 text-center">
+      <p class="text-center border-bottom border-primary border-2 fw-bold fs-2">アップロード画像</p>
+      <div id="showImage" class="w-100 p-2"></div>
     </div>
-    <div class="d-flex mt-5">
-      <div class="w-50 border text-center">
-        <p class="text-center border fw-bold fs-2">アップロード画像</p>
-        <div id="showPic" class="w-100 p-2"></div>
-      </div>
-      <div class="w-50 border">
-        <p class="text-center border fw-bold fs-2">レスポンス</p>
-        <div id="showResponse" class="w-100 p-2"></div>
-      </div>
+    <div class="w-50 border-top border-bottom border-end border-primary border-3">
+      <p class="text-center border-bottom border-primary border-2 fw-bold fs-2">レスポンス</p>
+      <div id="showResponse" class="w-100 p-2"></div>
     </div>
   </div>
 </div>
@@ -27,6 +25,15 @@
   const vision_api_url = 'https://vision.googleapis.com/v1/images:annotate?key='
   const api_url = vision_api_url + vision_api_key
 
+  $("#uploader").change(function(){
+    clear();
+    getImageInfo();
+  })
+
+  function clear(){
+    $("#responseText").remove();
+  }
+
   function getImageInfo() {
     var target = this.event.target;
     var file = target.files[0];
@@ -35,7 +42,7 @@
     reader.readAsDataURL(file);
     reader.onload = function(){
       dataUrl = reader.result;
-      $("#showPic").html("<img src='" + dataUrl + "' class='w-100 p-2'>");
+      $("#showImage").html("<img src='" + dataUrl + "' class='w-100 p-2'>");
       makeRequest(dataUrl,getAPIInfo);
     }
   }
@@ -64,9 +71,9 @@
 
   function showResult(result){
     if(result.responses[0].textAnnotations){
-      $("#showResponse").append("<span>" + result.responses[0].textAnnotations[0].description + "</span>")
+      $("#showResponse").append("<span id='responseText'>" + result.responses[0].textAnnotations[0].description + "</span>")
     }else{
-      $("#showResponse").append("<p>文字が見つかりませんでした</p>")
+      $("#showResponse").append("<p id='responseText' class='text-danger fs-4'>文字が検出されませんでした</p>")
     }
   }
 </script>
