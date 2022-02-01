@@ -1,7 +1,9 @@
 class PostsController < ApplicationController
   include PostsHelper
 
-  def index; end
+  def index
+    gon.vision_api_key = ENV['VISION_API_KEY']
+  end
   
   def result
     if params[:image].nil?
