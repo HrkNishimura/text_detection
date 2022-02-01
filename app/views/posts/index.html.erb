@@ -2,10 +2,10 @@
   <h2>文字認識する画像を選択</h2>
   <div>
     <div class="w-50 mx-auto mt-3">
-      <%= form_with url: result_path do |f| %>
+      <%= form_with model: @post do |f| %>
         <div class="form-group">
           <%= f.file_field :image, onchange: 'getImageInfo()', class: "form-control mb-3" %>
-          <%= f.submit 'Vision APIに送信', class: "btn btn-primary" %>
+          <%= f.submit '画像を保存', class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>
