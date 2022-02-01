@@ -9,6 +9,7 @@ gem 'fog-aws'
 
 # Configuration
 gem 'dotenv-rails'
+gem 'gon'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4'
